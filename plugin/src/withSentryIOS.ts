@@ -34,7 +34,7 @@ export const withSentryIOS: ConfigPlugin<string> = (config, sentryProperties: st
       'Bundle React Native code and images',
       'PBXShellScriptBuildPhase'
     );
-    modifyExistingXcodeBuildScript(bundleReactNativePhase);
+    modifyExistingXcodeBuildScript(bundleReactNativePhase, config.modRequest.projectRoot);
 
     return config;
   });
@@ -48,7 +48,7 @@ export const withSentryIOS: ConfigPlugin<string> = (config, sentryProperties: st
   ]);
 };
 
-export function modifyExistingXcodeBuildScript(script: any): void {
+export function modifyExistingXcodeBuildScript(script: any, projectRoot: string): void {
   if (
     !script.shellScript.match(/(packager|scripts)\/react-native-xcode\.sh\b/) ||
     script.shellScript.match(/sentry-cli\s+react-native[\s-]xcode/)
@@ -61,6 +61,8 @@ export function modifyExistingXcodeBuildScript(script: any): void {
   }
   let code = JSON.parse(script.shellScript);
   code =
+    'export GIAUTM=1\n' +
+    `export PROJECT_DIR=${projectRoot}\n` +
     'export SENTRY_PROPERTIES=sentry.properties\n' +
     'export EXTRA_PACKAGER_ARGS="--sourcemap-output $DERIVED_FILE_DIR/main.jsbundle.map"\n' +
     code.replace(

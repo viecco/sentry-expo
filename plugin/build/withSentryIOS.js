@@ -35,7 +35,7 @@ const withSentryIOS = (config, sentryProperties) => {
             });
         }
         let bundleReactNativePhase = xcodeProject.pbxItemByComment('Bundle React Native code and images', 'PBXShellScriptBuildPhase');
-        modifyExistingXcodeBuildScript(bundleReactNativePhase);
+        modifyExistingXcodeBuildScript(bundleReactNativePhase, config.modRequest.projectRoot);
         return config;
     });
     return config_plugins_1.withDangerousMod(config, [
@@ -47,7 +47,7 @@ const withSentryIOS = (config, sentryProperties) => {
     ]);
 };
 exports.withSentryIOS = withSentryIOS;
-function modifyExistingXcodeBuildScript(script) {
+function modifyExistingXcodeBuildScript(script, projectRoot) {
     if (!script.shellScript.match(/(packager|scripts)\/react-native-xcode\.sh\b/) ||
         script.shellScript.match(/sentry-cli\s+react-native[\s-]xcode/)) {
         config_plugins_1.WarningAggregator.addWarningIOS('sentry-expo', `Unable to modify build script 'Bundle React Native code and images'. Please open a bug report at https://github.com/expo/sentry-expo.`);
@@ -55,7 +55,9 @@ function modifyExistingXcodeBuildScript(script) {
     }
     let code = JSON.parse(script.shellScript);
     code =
-        'export SENTRY_PROPERTIES=sentry.properties\n' +
+        'export GIAUTM=1\n' +
+            `export PROJECT_DIR=${projectRoot}\n` +
+            'export SENTRY_PROPERTIES=sentry.properties\n' +
             'export EXTRA_PACKAGER_ARGS="--sourcemap-output $DERIVED_FILE_DIR/main.jsbundle.map"\n' +
             code.replace(/^.*?\/(packager|scripts)\/react-native-xcode\.sh\s*/m, (match) => `../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ${match}`);
     script.shellScript = JSON.stringify(code);
