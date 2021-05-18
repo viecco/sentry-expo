@@ -56,7 +56,7 @@ function modifyExistingXcodeBuildScript(script, projectRoot) {
     let code = JSON.parse(script.shellScript);
     code =
         'export GIAUTM=1\n' +
-            `export PROJECT_DIR=${projectRoot}\n` +
+            `export PROJECT_ROOT=${projectRoot}\n` +
             'export SENTRY_PROPERTIES=sentry.properties\n' +
             'export EXTRA_PACKAGER_ARGS="--sourcemap-output $DERIVED_FILE_DIR/main.jsbundle.map"\n' +
             code.replace(/^.*?\/(packager|scripts)\/react-native-xcode\.sh\s*/m, (match) => `../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ${match}`);
