@@ -62,7 +62,6 @@ export function modifyExistingXcodeBuildScript(script: any, projectRoot: string)
   let code = JSON.parse(script.shellScript);
   code =
     'export GIAUTM=1\n' +
-    `export PROJECT_ROOT=${projectRoot}\n` +
     'export SENTRY_PROPERTIES=sentry.properties\n' +
     'export EXTRA_PACKAGER_ARGS="--sourcemap-output $DERIVED_FILE_DIR/main.jsbundle.map"\n' +
     code.replace(
