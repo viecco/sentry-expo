@@ -28,7 +28,7 @@ function getSentryProperties(config) {
     const sentryHook = [
         ...((_b = (_a = config.hooks) === null || _a === void 0 ? void 0 : _a.postPublish) !== null && _b !== void 0 ? _b : []),
         ...((_d = (_c = config.hooks) === null || _c === void 0 ? void 0 : _c.postExport) !== null && _d !== void 0 ? _d : []),
-    ].filter((hook) => hook.file === 'sentry-expo/upload-sourcemaps')[0];
+    ].filter((hook) => hook.file === '@viecco/sentry-expo/upload-sourcemaps')[0];
     if (!sentryHook) {
         return null;
     }

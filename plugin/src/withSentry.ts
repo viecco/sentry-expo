@@ -33,7 +33,7 @@ export function getSentryProperties(config: ExpoConfig): string | null {
   const sentryHook = [
     ...(config.hooks?.postPublish ?? []),
     ...(config.hooks?.postExport ?? []),
-  ].filter((hook) => hook.file === 'sentry-expo/upload-sourcemaps')[0];
+  ].filter((hook) => hook.file === '@viecco/sentry-expo/upload-sourcemaps')[0];
   if (!sentryHook) {
     return null;
   }
