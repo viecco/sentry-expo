@@ -1,5 +1,5 @@
 {
-  "name": "sentry-expo",
+  "name": "@giautm/sentry-expo",
   "version": "3.1.4",
   "description": "Catch your Javascript errors for your production Expo apps!",
   "main": "build/index.js",
@@ -10,6 +10,9 @@
     "plugin/build",
     "app.plugin.js"
   ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "build": "expo-module build",
     "clean": "expo-module clean",
@@ -26,10 +29,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/expo/sentry-expo.git"
+    "url": "https://github.com/giautm/sentry-expo.git"
   },
   "bugs": {
-    "url": "https://github.com/expo/sentry-expo/issues"
+    "url": "https://github.com/giautm/sentry-expo/issues"
   },
   "jest": {
     "preset": "expo-module-scripts"
