@@ -1,5 +1,5 @@
 {
-  "name": "@giautm/sentry-expo",
+  "name": "@viecco/sentry-expo",
   "version": "3.1.5-rc.1",
   "description": "Catch your Javascript errors for your production Expo apps!",
   "main": "build/index.js",
@@ -29,10 +29,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/giautm/sentry-expo.git"
+    "url": "https://github.com/viecco/sentry-expo.git"
   },
   "bugs": {
-    "url": "https://github.com/giautm/sentry-expo/issues"
+    "url": "https://github.com/viecco/sentry-expo/issues"
   },
   "jest": {
     "preset": "expo-module-scripts"
