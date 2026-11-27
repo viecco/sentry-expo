@@ -5,3 +5,15 @@ node_modules/**/*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Secret và file khoá, không commit (SEC-11 của viecco/engineering)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.jks
+*.p12
+*.p8
+*service-account*.json
+key.json
